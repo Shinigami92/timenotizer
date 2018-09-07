@@ -1,0 +1,27 @@
+{
+  "name": "timenotizer",
+  "version": "1.0.0",
+  "description": "electron app for time tracking",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shinigami92/timenotizer.git"
+  },
+  "author": {
+    "name": "Christopher Quadflieg",
+    "email": "chrissi92@hotmail.de"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Shinigami92/timenotizer/issues"
+  },
+  "homepage": "https://github.com/Shinigami92/timenotizer#readme",
+  "devDependencies": {
+    "electron": "~2.0.8",
+    "prettier": "^1.14.2"
+  }
+}
