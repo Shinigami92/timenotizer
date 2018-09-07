@@ -9,8 +9,9 @@ if (process.env.NODE_ENV === 'DEV') {
 
 app.on('ready', () => {
 	let window = new BrowserWindow({
-		width: 800,
-		height: 600,
+		// width: 800,
+		// height: 600,
+		useContentSize: true,
 		autoHideMenuBar: true,
 		skipTaskbar: true
 	});
