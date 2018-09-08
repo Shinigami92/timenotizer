@@ -14,9 +14,9 @@ function createWindow() {
 	mainWindow = new BrowserWindow({
 		// width: 800,
 		// height: 600,
-		useContentSize: true,
 		autoHideMenuBar: true,
-		skipTaskbar: false
+		skipTaskbar: false,
+		useContentSize: true
 	});
 	mainWindow.loadURL(url);
 	mainWindowPresent = true;

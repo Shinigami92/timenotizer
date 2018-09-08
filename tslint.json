@@ -57,5 +57,18 @@
 				"object-destructuring"
 			]
 		}
+	},
+	"jsRules": {
+		"indent": [true, "tabs"],
+		"no-console": false,
+		"quotemark": [true, "single", "avoid-escape", "avoid-template"],
+		"trailing-comma": {
+			"options": [
+				{
+					"multiline": "never",
+					"singleline": "never"
+				}
+			]
+		}
 	}
 }
