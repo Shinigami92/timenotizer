@@ -22,13 +22,25 @@ function createWindow() {
 	mainWindowPresent = true;
 }
 
+let tray;
 app.on('ready', () => {
-	let tray = new Tray('src/assets/logo.png');
+	tray = new Tray('src/assets/logo.png');
 	const contextMenu = Menu.buildFromTemplate([
+		{
+			label: 'Open',
+			click() {
+				if (mainWindowPresent === false) {
+					createWindow();
+				}
+			}
+		},
 		{
 			label: 'Quit TimeNotizer',
 			click() {
 				// Program can be closed via tray -> quit
+				tray = null;
+				mainWindow = null;
+				mainWindowPresent = null;
 				app.quit();
 			}
 		}
