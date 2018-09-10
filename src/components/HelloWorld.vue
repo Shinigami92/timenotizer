@@ -1,34 +1,70 @@
 <template>
-  <v-container fluid fill-height>
-    <v-slide-y-transition mode="out-in">
-      <v-layout column align-center>
-        <img src="@/assets/logo.png" alt="Vuetify.js" class="mb-5">
-        <blockquote>
-          {{ msg }}
-          <footer>
-            <small>
-              <em>&mdash;John Johnson</em>
-            </small>
-          </footer>
-        </blockquote>
-		<v-btn>normal</v-btn>
-		<v-btn color="primary">primary</v-btn>
-		<v-btn color="secondary">secondary</v-btn>
-		<v-btn color="accent">accent</v-btn>
-		<v-btn color="error">error</v-btn>
-		<v-btn color="info">info</v-btn>
-		<v-btn color="success">success</v-btn>
-		<v-btn color="warning">warning</v-btn>
-      </v-layout>
-    </v-slide-y-transition>
-  </v-container>
+	<v-container fluid fill-height>
+		<v-layout>
+			<v-flex>
+				<v-data-table :headers="headers" :items="timeEntries" hide-actions class="elevation-1">
+					<template slot="items" slot-scope="props">
+						<td>{{ props.item.started | date }}</td>
+						<td>{{ props.item.category }}</td>
+						<td>{{ props.item.subject }}</td>
+						<td>{{ props.item.duration }}</td>
+						<td>
+							<v-icon v-if="props.item.done" color="success">done</v-icon>
+							<v-icon v-else color="error">clear</v-icon>
+						</td>
+					</template>
+				</v-data-table>
+			</v-flex>
+		</v-layout>
+	</v-container>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
+import { TimeEntry } from './../shared/time-entry';
 
-@Component
+interface Header {
+	text: string;
+	value: string;
+	align?: 'left' | 'center' | 'right';
+	sortable?: boolean;
+	class?: string[] | string;
+	width?: string;
+}
+
+@Component({
+	filters: {
+		date(date: Date): string {
+			return date.toLocaleString('de-DE');
+		}
+	},
+	name: 'hello'
+})
 export default class HelloWorld extends Vue {
-	@Prop() private msg: string = '"First, solve the problem. Then, write the code."';
+	private headers: Header[] = [
+		{ text: 'Started', value: 'started' },
+		{ text: 'Category', value: 'category' },
+		{ text: 'Subject', value: 'subject' },
+		{ text: 'Duration', value: 'duration' },
+		{ text: 'Done?', value: 'done' }
+	];
+	private timeEntries: TimeEntry[] = [
+		{
+			id: '401e7428-0b07-4307-a79e-5f79a42451c3',
+			started: new Date(),
+			category: 'AAA',
+			subject: 'Test Entry',
+			done: false
+		},
+		{
+			id: '401e7428-0b07-4307-a79e-5f79a42451c4',
+			started: new Date(new Date().getTime() - 1000 * 60 * 60 * 1.4),
+			stopped: new Date(),
+			category: 'BBB',
+			subject: 'Test Entry2',
+			duration: 1.4,
+			done: true
+		}
+	];
 }
 </script>
