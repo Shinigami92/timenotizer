@@ -9,12 +9,14 @@ if (process.env.NODE_ENV === 'DEV') {
 
 let mainWindow;
 let mainWindowPresent = false;
+let icon = 'src/assets/alarm-clock-32.png';
 
 function createWindow() {
 	mainWindow = new BrowserWindow({
 		// width: 800,
 		// height: 600,
 		autoHideMenuBar: true,
+		icon,
 		skipTaskbar: false,
 		useContentSize: true
 	});
@@ -24,7 +26,7 @@ function createWindow() {
 
 let tray;
 app.on('ready', () => {
-	tray = new Tray('src/assets/logo.png');
+	tray = new Tray(icon);
 	const contextMenu = Menu.buildFromTemplate([
 		{
 			label: 'Open',
@@ -41,6 +43,7 @@ app.on('ready', () => {
 				tray = null;
 				mainWindow = null;
 				mainWindowPresent = null;
+				icon = null;
 				app.quit();
 			}
 		}
